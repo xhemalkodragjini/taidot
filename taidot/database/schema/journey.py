@@ -22,6 +22,7 @@ class Program(BaseModel):
 
 
 class Journey(BaseModel):
+    id: Optional[int] = None
     university: University
     program: Program
 

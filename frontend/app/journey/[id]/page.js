@@ -42,11 +42,21 @@ export default function JourneyDetail() {
         <h2 className="text-xl font-semibold mb-2">{journey.university.name}</h2>
         <div className="bg-white rounded-xl shadow-md p-6 w-full max-w-2xl flex flex-col gap-4">
           <div>
-            <b>Application Procedure:</b> {requirements.application_procedure || "-"}
+            <b>Application Procedure:</b>
+            {requirements.application_procedure && requirements.application_procedure.includes("http") ? null : ` ${requirements.application_procedure || "-"}`}
             {requirements.application_procedure && requirements.application_procedure.includes("http") && (
               <>
                 <br />
-                <a href={requirements.application_procedure} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Application Link</a>
+                <a
+                  href={requirements.application_procedure}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-2 px-5 py-2 rounded-lg font-semibold transition bg-[#bcd9be] text-[#2e4052] hover:bg-[#a3c7a6] shadow"
+                  style={{ fontFamily: 'Poppins', textDecoration: 'none' }}
+                  aria-label="Open Application Link"
+                >
+                  Open Application Link
+                </a>
               </>
             )}
           </div>

@@ -14,6 +14,7 @@ export default function Navbar({ username }) {
             width={90}
             height={90}
             priority
+            style={{ width: 90, height: "auto" }}
           />
         </Link>
       </div>
