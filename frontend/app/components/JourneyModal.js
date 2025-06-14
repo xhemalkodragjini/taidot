@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function JourneyModal({ show, onClose, onSubmit, form, onChange }) {
+export default function JourneyModal({ show, onClose, onSubmit, form, onChange, searchResults, onSelectProgram, loading }) {
 	if (!show) return null;
 	return (
 		<div className="fixed inset-0 flex items-center justify-center z-50" style={{ background: "rgba(0,0,0,0.15)", backdropFilter: "blur(12px)" }}>
@@ -25,6 +25,25 @@ export default function JourneyModal({ show, onClose, onSubmit, form, onChange }
 					<button onClick={onClose} className="px-4 py-2 rounded bg-gray-200 text-gray-700">Cancel</button>
 					<button onClick={onSubmit} className="px-4 py-2 rounded bg-[#bcd9be] text-[#2e4052] font-semibold">Search</button>
 				</div>
+
+				{/* Show loading or search results after submit */}
+				{loading && (
+					<div className="mt-6 text-center text-gray-500">Searching for programs...</div>
+				)}
+				{searchResults && searchResults.length > 0 && (
+					<div className="mt-6">
+						<h4 className="font-semibold mb-2">Select a program you're interested in:</h4>
+						<ul className="flex flex-col gap-2">
+							{searchResults.map((result, idx) => (
+								<li key={idx}>
+									<button onClick={() => onSelectProgram(result)} className="w-full text-left px-3 py-2 rounded border border-gray-300 hover:bg-[#f0f7f4]">
+										{result}
+									</button>
+								</li>
+							))}
+						</ul>
+					</div>
+				)}
 			</div>
 		</div>
 	);

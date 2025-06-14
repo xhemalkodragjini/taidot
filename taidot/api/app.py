@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api.routes.user import router as user_router
 from api.routes.journey import router as journey_router
+from api.routes.search_programs import router as search_programs_router
 
 app = FastAPI()
 
@@ -16,3 +17,4 @@ app.add_middleware(
 
 app.include_router(user_router)
 app.include_router(journey_router)
+app.include_router(search_programs_router)
