@@ -1,6 +1,7 @@
 'use client';
 
 import Navbar from "../components/Navbar";
+import { useEffect, useState } from "react";
 
 const journeys = [
 	{ university: "University of Helsinki", program: "Computer Science BSc" },
@@ -10,9 +11,16 @@ const journeys = [
 ];
 
 export default function Welcome() {
+	const [username, setUsername] = useState("");
+
+	useEffect(() => {
+		const stored = localStorage.getItem("username");
+		if (stored) setUsername(stored);
+	}, []);
+
 	return (
 		<div style={{ background: "#f5f6fa", minHeight: "100vh" }}>
-			<Navbar />
+			<Navbar username={username} />
 			<div className="flex flex-col items-center p-8 gap-10">
 				<h1
 					className="text-4xl font-bold"

@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr, Field
 from enum import StrEnum
 from .journey import Journey
+
 class UserLogin(BaseModel):
     username: str = Field(..., min_length=3, max_length=50)
     email: EmailStr
@@ -26,3 +27,5 @@ class User(BaseModel):
         default_factory=Journey,
         description="The user's educational journey, including university and program details"
     )
+
+__all__ = ["UserLogin", "LevelOfStudies", "UserProfile", "User"]
