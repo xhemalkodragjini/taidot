@@ -37,7 +37,14 @@ export default function JourneyModal({ show, onClose, onSubmit, form, onChange, 
 							{searchResults.map((result, idx) => (
 								<li key={idx}>
 									<button onClick={() => onSelectProgram(result)} className="w-full text-left px-3 py-2 rounded border border-gray-300 hover:bg-[#f0f7f4]">
-										{result}
+										{typeof result === 'object' && result.university && result.program ? (
+											<>
+												<div><b>{result.program.title}</b> ({result.program.level})</div>
+												<div>{result.university.name}{result.university.country ? `, ${result.university.country}` : ''}</div>
+											</>
+										) : (
+											String(result)
+										)}
 									</button>
 								</li>
 							))}

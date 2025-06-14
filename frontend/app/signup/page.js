@@ -18,7 +18,7 @@ export default function SignUp() {
       });
       if (res.ok) {
         localStorage.setItem("username", username);
-        router.push("/welcome");
+        router.push("/myjourneys");
       }
     } catch (err) {}
   };

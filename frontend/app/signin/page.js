@@ -22,7 +22,7 @@ export default function SignIn() {
         if (username) {
           localStorage.setItem("username", username);
         }
-        router.push("/welcome");
+        router.push("/myjourneys");
       }
     } catch (err) {}
   };

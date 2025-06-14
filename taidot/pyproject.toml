@@ -12,6 +12,8 @@ fastapi = {extras = ["all"], version = "^0.115.12"}
 pydantic = "^2.11.7"
 openai = "^1.86.0"
 httpx = "^0.28.1"
+sqlalchemy = "^2.0.41"
+alembic = "^1.16.1"
 
 
 [build-system]
