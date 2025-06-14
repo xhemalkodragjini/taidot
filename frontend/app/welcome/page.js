@@ -1,6 +1,7 @@
 'use client';
 
 import Navbar from "../components/Navbar";
+import JourneyModal from "../components/JourneyModal";
 import { useEffect, useState } from "react";
 
 const journeys = [
@@ -11,6 +12,22 @@ const journeys = [
 ];
 
 export default function Welcome() {
+	const [showModal, setShowModal] = useState(false);
+	const [form, setForm] = useState({
+		university: "",
+		degree: "",
+		program: "",
+	});
+
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setForm((prev) => ({ ...prev, [name]: value }));
+	};
+
+	const handleCreate = () => {
+		// Here you would handle form submission, e.g., API call
+		setShowModal(false);
+	};
 	const [username, setUsername] = useState("");
 
 	useEffect(() => {
@@ -79,9 +96,17 @@ export default function Welcome() {
 								color: "#2e4052",
 								fontFamily: "Poppins",
 							}}
+							onClick={() => setShowModal(true)}
 						>
 							Create New Journey
 						</button>
+						<JourneyModal
+							show={showModal}
+							onClose={() => setShowModal(false)}
+							onSubmit={handleCreate}
+							form={form}
+							onChange={handleInputChange}
+						/>
 					</div>
 				</div>
 			</div>
