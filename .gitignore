@@ -61,28 +61,6 @@ pytestdebug.log
 *.sqlite3
 
 #################################
-# React.js (Frontend)
-#################################
-
-# Node modules
-frontend/node_modules/
-
-# Production build
-frontend/build/
-
-# dotenv files
-frontend/.env
-frontend/.env.local
-frontend/.env.development.local
-frontend/.env.test.local
-frontend/.env.production.local
-
-# Log files
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
-
-#################################
 # Miscellaneous
 #################################
 
