@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from "react";
 import Navbar from "../components/Navbar";
 import JourneyModal from "../components/JourneyModal";
+import { useEffect, useState } from "react";
 
 const journeys = [
 	{ university: "University of Helsinki", program: "Computer Science BSc" },
@@ -28,10 +28,16 @@ export default function Welcome() {
 		// Here you would handle form submission, e.g., API call
 		setShowModal(false);
 	};
+	const [username, setUsername] = useState("");
+
+	useEffect(() => {
+		const stored = localStorage.getItem("username");
+		if (stored) setUsername(stored);
+	}, []);
 
 	return (
 		<div style={{ background: "#f5f6fa", minHeight: "100vh" }}>
-			<Navbar />
+			<Navbar username={username} />
 			<div className="flex flex-col items-center p-8 gap-10">
 				<h1
 					className="text-4xl font-bold"
