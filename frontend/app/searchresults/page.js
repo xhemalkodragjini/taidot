@@ -29,11 +29,14 @@ export default function SearchResults() {
   const handleCreateJourneys = async () => {
     setLoading(true);
     const journeys = selected.map((idx) => results[idx]);
-    await fetch(`http://localhost:8000/user/${username}/journeys/add`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(journeys),
-    });
+    // Use the correct endpoint for adding journeys
+    for (const journey of journeys) {
+      await fetch(`http://localhost:8000/user/${username}/journeys`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(journey),
+      });
+    }
     setLoading(false);
     router.push("/myjourneys");
   };
@@ -43,6 +46,9 @@ export default function SearchResults() {
       <Navbar username={username} />
       <div className="flex flex-col items-center p-8 gap-10">
         <h1 className="text-3xl font-bold mb-4">Search Results</h1>
+        <p className="text-base text-gray-700 mb-4 text-center max-w-xl" style={{ fontFamily: 'Poppins' }}>
+          Please select the program(s) you plan to apply to, then click "Create New Journeys" to add them to your dashboard.
+        </p>
         <div className="w-full max-w-2xl">
           {results.length === 0 && <div>No results found.</div>}
           <ul className="flex flex-col gap-4">

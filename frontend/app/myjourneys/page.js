@@ -72,6 +72,11 @@ export default function MyJourneys() {
 										key={idx}
 										className="border-2 border-gray-300 bg-[#f8fafc] rounded-xl p-6 flex flex-col items-start shadow-sm transition hover:shadow-lg hover:border-[#bcd9be] cursor-pointer relative"
 										style={{ minHeight: "120px", boxShadow: "0 2px 8px 0 rgba(44,62,80,0.04)" }}
+										onClick={() => {
+											// Use journey.id if available, otherwise fallback to index
+											const journeyId = journey.id || idx;
+											window.location.href = `/journey/${journeyId}`;
+										}}
 									>
 										<div className="w-8 h-2 bg-[#bcd9be] rounded-t-md absolute -top-2 left-4" />
 										<div className="font-semibold text-lg mb-1" style={{ color: "#2e4052", fontFamily: "Montserrat" }}>
