@@ -3,6 +3,7 @@
 import Navbar from "../components/Navbar";
 import JourneyModal from "../components/JourneyModal";
 import { useEffect, useState } from "react";
+import { searchPrograms } from "../components/searchPrograms";
 
 const journeys = [
 	{ university: "University of Helsinki", program: "Computer Science BSc" },
@@ -18,17 +19,31 @@ export default function Welcome() {
 		degree: "",
 		program: "",
 	});
+	const [searchResults, setSearchResults] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [username, setUsername] = useState("");
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 		setForm((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleCreate = () => {
-		// Here you would handle form submission, e.g., API call
-		setShowModal(false);
+	const handleCreate = async (e) => {
+		e && e.preventDefault();
+		setLoading(true);
+		setSearchResults([]);
+		const results = await searchPrograms(form.university, form.degree, form.program);
+		setSearchResults(results);
+		setLoading(false);
 	};
-	const [username, setUsername] = useState("");
+
+	const handleSelectProgram = (selected) => {
+		// Here you can save the selected program to journeys or backend
+		alert(`You selected: ${selected}`);
+		setShowModal(false);
+		setForm({ university: "", degree: "", program: "" });
+		setSearchResults([]);
+	};
 
 	useEffect(() => {
 		const stored = localStorage.getItem("username");
@@ -102,10 +117,17 @@ export default function Welcome() {
 						</button>
 						<JourneyModal
 							show={showModal}
-							onClose={() => setShowModal(false)}
+							onClose={() => {
+								setShowModal(false);
+								setSearchResults([]);
+								setLoading(false);
+							}}
 							onSubmit={handleCreate}
 							form={form}
 							onChange={handleInputChange}
+							searchResults={searchResults}
+							onSelectProgram={handleSelectProgram}
+							loading={loading}
 						/>
 					</div>
 				</div>
