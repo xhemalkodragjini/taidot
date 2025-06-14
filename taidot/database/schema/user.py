@@ -1,15 +1,18 @@
 from pydantic import BaseModel, EmailStr, Field
-from typing import Literal
+from enum import StrEnum
+from .journey import Journey
 
 class UserLogin(BaseModel):
     username: str = Field(..., min_length=3, max_length=50)
     email: EmailStr
     password: str = Field(..., min_length=8)
 
-class LevelOfStudies(str, Enum):
+class LevelOfStudies(StrEnum):
     HIGH_SCHOOL = "high school"
     UNIVERSITY_BACHELORS = "Bachelors"
     UNIVERSITY_MASTERS = "Masters"
+
+
 class UserProfile(BaseModel):
     name: str = Field(..., min_length=1, max_length=50)
     surname: str = Field(..., min_length=1, max_length=50)
@@ -20,3 +23,9 @@ class UserProfile(BaseModel):
 class User(BaseModel):
     login: UserLogin
     profile: UserProfile
+    journey: Journey = Field(
+        default_factory=Journey,
+        description="The user's educational journey, including university and program details"
+    )
+
+__all__ = ["UserLogin", "LevelOfStudies", "UserProfile", "User"]

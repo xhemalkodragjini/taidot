@@ -1,15 +1,20 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List
-from .schema.user import UserLogin, UserProfile, User
+from database.schema import UserLogin, User
+from enum import StrEnum, auto
 
-app = FastAPI()
+router = APIRouter()
 
 # Mock database
-users_db = []
+users_db = [UserLogin(**{
+  "username": "jcyri",
+  "email": "user@example.com",
+  "password": "stringst"
+})]
 
-@app.post("/user/create", response_model=User)
-def create_user(user: User):
+@router.post("/user/create", )
+def create_user(user: UserLogin):
     # Check if the username or email already exists
     for existing_user in users_db:
         if existing_user.login.username == user.login.username or existing_user.login.email == user.login.email:
@@ -17,20 +22,24 @@ def create_user(user: User):
     
     # Add user to the mock database
     users_db.append(user)
-    return user
+    
 
-class LoginStatus(Enum):
+class LoginStatus(StrEnum):
     SUCCESS = auto()
     FAILURE = auto()
 
 
-@app.post("/user/login", response_model=UserLogin)
-def login_user(login_data: UserLogin):
+class UserLoginEmailPass(BaseModel):
+    email: str
+    password: str
+
+
+@router.post("/user/login", response_model=UserLogin)
+def login_user(login_data: UserLoginEmailPass):
     # Check if the user exists in the mock database
     for existing_user in users_db:
-        if (existing_user.login.username == login_data.username and
-            existing_user.login.email == login_data.email and
-            existing_user.login.password == login_data.password):
-            return LoginStatus.SUCCESS
+        if (existing_user.email == login_data.email and
+            existing_user.password == login_data.password):
+            return existing_user
     
     raise HTTPException(status_code=401, detail="Invalid credentials")
