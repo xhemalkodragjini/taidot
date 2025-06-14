@@ -59,6 +59,7 @@ pytestdebug.log
 
 # Database
 *.sqlite3
+*.db
 
 #################################
 # Miscellaneous
