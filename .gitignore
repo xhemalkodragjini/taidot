@@ -1,0 +1,102 @@
+#################################
+# OS-Specific
+#################################
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+#################################
+# Editor / IDE
+#################################
+
+# VS Code
+.vscode/
+
+#################################
+# Python
+#################################
+
+# Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+env/
+.venv/
+venv/
+
+# Packaging
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.manifest
+*.spec
+
+# Testing / Coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+pytestdebug.log
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# dotenv files
+.env
+.env.*
+
+# Database
+*.sqlite3
+
+#################################
+# React.js (Frontend)
+#################################
+
+# Node modules
+frontend/node_modules/
+
+# Production build
+frontend/build/
+
+# dotenv files
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Log files
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+#################################
+# Miscellaneous
+#################################
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+
+
+# System generated
+*.orig
+*.rej
+
+# Ignore everything in __pypackages__ (PEP 582)
+__pypackages__/
+
