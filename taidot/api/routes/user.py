@@ -19,6 +19,11 @@ def create_user(user: User):
     users_db.append(user)
     return user
 
+class LoginStatus(Enum):
+    SUCCESS = auto()
+    FAILURE = auto()
+
+
 @app.post("/user/login", response_model=UserLogin)
 def login_user(login_data: UserLogin):
     # Check if the user exists in the mock database
@@ -26,6 +31,6 @@ def login_user(login_data: UserLogin):
         if (existing_user.login.username == login_data.username and
             existing_user.login.email == login_data.email and
             existing_user.login.password == login_data.password):
-            return login_data
+            return LoginStatus.SUCCESS
     
     raise HTTPException(status_code=401, detail="Invalid credentials")
