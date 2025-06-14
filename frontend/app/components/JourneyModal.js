@@ -6,7 +6,7 @@ export default function JourneyModal({ show, onClose, onSubmit, form, onChange }
 		<div className="fixed inset-0 flex items-center justify-center z-50" style={{ background: "rgba(0,0,0,0.15)", backdropFilter: "blur(12px)" }}>
 			<div className="bg-white rounded-xl p-8 shadow-lg w-full max-w-md">
 				<h3 className="text-xl font-bold mb-4" style={{ color: "#2e4052", fontFamily: "Montserrat" }}>
-					Create New Journey
+					Search for your New Journey
 				</h3>
 				<div className="flex flex-col gap-6">
 					<label className="font-semibold">University</label>
@@ -23,7 +23,7 @@ export default function JourneyModal({ show, onClose, onSubmit, form, onChange }
 				</div>
 				<div className="flex justify-end gap-2 mt-6">
 					<button onClick={onClose} className="px-4 py-2 rounded bg-gray-200 text-gray-700">Cancel</button>
-					<button onClick={onSubmit} className="px-4 py-2 rounded bg-[#bcd9be] text-[#2e4052] font-semibold">Create</button>
+					<button onClick={onSubmit} className="px-4 py-2 rounded bg-[#bcd9be] text-[#2e4052] font-semibold">Search</button>
 				</div>
 			</div>
 		</div>

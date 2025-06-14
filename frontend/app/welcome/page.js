@@ -98,7 +98,7 @@ export default function Welcome() {
 							}}
 							onClick={() => setShowModal(true)}
 						>
-							Create New Journey
+							Search new Journey
 						</button>
 						<JourneyModal
 							show={showModal}
