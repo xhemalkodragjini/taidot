@@ -48,7 +48,7 @@ All rights reserved © 2025 Xhemal Kodragjini.
 Do not copy, modify, or distribute without explicit permission.
 
 ---
-For questions or contributions, please reach out to: Johana Cyri, Xhemal Kodragjini (xhemal.kodragjini98@gmail.com
+For questions or contributions, please reach out to: Johana Cyri, Xhemal Kodragjini (xhemal.kodragjini98@gmail.com)
 
 ## 🚀 Future Features & Extensions (Planned)
 
