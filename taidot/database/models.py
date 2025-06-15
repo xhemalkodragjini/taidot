@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Table, JSON
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.ext.mutable import MutableDict
 
 Base = declarative_base()
 
@@ -10,7 +11,7 @@ class User(Base):
     username = Column(String, unique=True, nullable=False)
     email = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
-    profile = Column(JSON, default={})
+    profile = Column(MutableDict.as_mutable(JSON), default={})
     journeys = relationship('Journey', back_populates='user')
 
 class Journey(Base):
