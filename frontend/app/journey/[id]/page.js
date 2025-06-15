@@ -41,19 +41,23 @@ export default function JourneyDetail() {
       <div className="flex flex-col items-center p-8 gap-8">
         <button
           onClick={() => router.back()}
-          className="self-start mb-4 px-4 py-2 rounded-lg bg-[#ffc857] text-[#2e4052] font-semibold hover:bg-[#ffd77a] transition shadow"
+          className="self-start mb-4 px-4 py-2 rounded-lg bg-[#ffc857] text-[#2e4052] font-semibold hover:bg-[#ffd77a] transition shadow border-2 border-[#ffd77a] focus:ring-2 focus:ring-[#ffc857]"
           aria-label="Go Back"
         >
           ← Back
         </button>
-        <h1 className="text-3xl font-bold text-[#2e4052]" style={{ fontFamily: 'Poppins', letterSpacing: '0.01em' }}>{journey.program.title} ({journey.program.level})</h1>
+        <h1 className="text-3xl font-bold text-[#2e4052] relative" style={{ fontFamily: 'Poppins', letterSpacing: '0.01em' }}>
+          {journey.program.title}
+          <span className="px-3 py-1 rounded-full bg-[#ffc857] text-[#2e4052] text-lg ml-2 align-middle">{journey.program.level}</span>
+        </h1>
         <h2 className="text-base font-semibold flex items-center mb-10 justify-center gap-2 text-[#3a5a40]" style={{ fontFamily: 'Poppins', letterSpacing: '0.02em' }}>
           <svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5 text-[#3a5a40]' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 14l9-5-9-5-9 5 9 5zm0 7v-6m0 0l-9-5m9 5l9-5' /></svg>
           <span className="tracking-wide" style={{ fontWeight: 500 }}>{journey.university.name}</span>
         </h2>
-        <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-2xl flex flex-col gap-8 relative min-h-[700px] border border-[#e0e7ef]">
+        <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-2xl flex flex-col gap-8 relative min-h-[700px] border border-[#e0e7ef]" style={{ boxShadow: '0 4px 24px 0 #ffc85733' }}>
           <div className="flex flex-col items-center">
             <b className="text-xl text-[#3a5a40] tracking-wide" style={{ fontFamily: 'Poppins', letterSpacing: '0.03em' }}>Admission Requirements Roadmap</b>
+            <div className="w-32 h-2 rounded-full mt-2" style={{ background: 'linear-gradient(90deg, #ffc857 0%, #bcd9be 100%)' }} />
           </div>
           <div>
             <RoadmapStepper
@@ -74,7 +78,7 @@ export default function JourneyDetail() {
                 href={requirements.application_procedure}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-lg font-semibold transition bg-[#ffc857] text-[#2e4052] hover:bg-[#ffd77a] shadow-md border border-[#e0e7ef] text-base tracking-wide"
+                className="px-4 py-2 rounded-lg font-semibold transition bg-[#ffc857] text-[#2e4052] hover:bg-[#ffd77a] shadow-md border-2 border-[#ffc857] text-base tracking-wide focus:ring-2 focus:ring-[#ffc857]"
                 style={{ fontFamily: 'Poppins', textDecoration: 'none', boxShadow: '0 2px 8px 0 #ffc85733' }}
                 aria-label="Application Link"
               >
