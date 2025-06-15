@@ -40,7 +40,10 @@ Taidot is a full-stack web application that helps students plan, organize, and m
 - **Web Search:** SerpAPI for real-time Google search results
 
 ## License
-MIT
+
+This project is provided for educational and reference purposes only.  
+All rights reserved © 2025 Xhemal Kodragjini.  
+Do not copy, modify, or distribute without explicit permission.
 
 ---
 Contact person: Xhemal Kodragjini ,  Johana Cyri
