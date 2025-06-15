@@ -44,4 +44,50 @@ MIT
 
 ---
 Contact person: Xhemal Kodragjini ,  Johana Cyri
-For questions or contributions, please 
+For questions or contributions, please
+
+## 🚀 Future Features & Extensions (Planned)
+
+### 🌍 University Discovery for Open Explorers
+For students who know what they want to study, but are open to suggestions on where.
+
+### 🧠 Smart Discovery Workflow
+- Select desired field of study and degree level (mandatory).
+- Add background details: GPA, country of origin, etc.
+- Apply optional filters:
+  - Preferred continent/country/city
+  - Tuition budget or scholarship-only
+  - Year of intended admission
+  - School rankings
+
+### 🔍 AI-Based University Matching
+- Scrapes universities matching filters.
+- Analyzes module handbooks and official documents.
+- Summarizes:
+  - Required credits/courses
+  - Needed documents and certifications
+  - Application deadlines
+  - Exam requirements
+- Each result becomes a "dossier" with links and structured notes.
+
+### 🗂️ From Discovery to Action
+- After selecting preferred programs, user creates journeys just like in the current app.
+- AI generates a roadmap and todo plan based on those requirements.
+
+### 📝 Additional Manual Task Management
+- Handles country-specific tasks:
+  - Document translation
+  - Document certification
+  - Submission steps
+  - Visa applications
+
+### 🧭 Life Planning Features
+- AI helps plan when to start each step.
+- Tracks completion status and offers real-time progress updates.
+
+### 💬 Long-Term Vision
+- Start early: App supports users from high school years to begin planning ahead.
+- Personal academic advice: “I got this grade – can I apply to this university?” → Receive academic recommendations (e.g., study more math, take specific tests).
+- Connect with alumni mentors: Alumni share journeys and serve as peer advisors.
+- Daily AI assistant: Chat interface to ask questions like "What should I work on today?"
+- Documented university guide: Full walkthrough of university applications, requirements, and life abroad—organized in-app.
