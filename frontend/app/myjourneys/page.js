@@ -22,14 +22,11 @@ export default function MyJourneys() {
 		setForm((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleCreate = async (e) => {
+	const handleCreate = (e) => {
 		e && e.preventDefault();
 		setLoading(true);
 		setSearchResults([]);
-		const results = await searchPrograms(form.university, form.degree, form.program);
-		setSearchResults(results);
-		setLoading(false);
-		sessionStorage.setItem("searchResults", JSON.stringify(results));
+		sessionStorage.setItem("searchForm", JSON.stringify(form));
 		window.location.href = "/searchresults";
 	};
 

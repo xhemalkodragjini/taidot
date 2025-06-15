@@ -84,6 +84,7 @@ async def search_programs(req: ProgramSearchRequest):
         # Remove triple backticks and optional 'json' prefix
         summary_json = re.sub(r"^```json|^```|```$", "", summary_json, flags=re.IGNORECASE).strip()
         journeys = json.loads(summary_json)
+        print(summary_json)
         journeys = [Journey(**j) for j in journeys]
     except Exception as e:
         print(f"Error parsing GPT output: {e}")
