@@ -1,3 +1,5 @@
+![Taidot Logo](frontend/public/taidot_logo.png)
+
 # Taidot – University Journey Planner
 
 Taidot is a full-stack web application that helps students plan, organize, and manage their university application journey. Powered by OpenAI GPT-4.1 and real-time web search (SerpAPI), Taidot provides personalized, up-to-date guidance and resources for every step of the process.
