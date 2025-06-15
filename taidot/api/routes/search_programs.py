@@ -60,13 +60,13 @@ async def search_programs(req: ProgramSearchRequest):
         return {"programs": []}
 
     summary_prompt = (
-        f"You are an expert in academic programs. Given the following list of search results, extract the relevant official university degree programs only.\n"
-        f"Each result may mention a {req.degree} program in {req.program} at {req.university}.\n"
-        f"For each program, return a JSON array of Journey objects with fields: university (name, country), and program (title, level, requirements).\n"
-        f"For each program, requirements must be a dict with: 'admission_requirements' (list of requirements), 'application_procedure' (where to apply, including the official application link if available), and 'deadline' (application deadline, if available).\n"
+        f"You are an expert in academic programs. Given the following list of search results, extract only the official university degree programs that have ALL of the following fields with non-empty values: university name, country, program title, program level ('BSc'|'MSc'|'PhD'), admission_requirements (list), application_procedure (string), and deadline (string).\n"
+        f"If any of these fields is missing or is an empty string or empty list, do not include that program in the output.\n"
+        f"For each valid program, return a JSON array of Journey objects with fields: university (name, country), and program (title, level, requirements).\n"
+        f"requirements must be a dict with: 'admission_requirements' (list of requirements), 'application_procedure' (where to apply, including the official application link if available), and 'deadline' (application deadline, if available).\n"
         f"The 'application_procedure' field should only contain the official application website or portal, and a direct link if possible. Do not include instructions or steps, just the location/link.\n"
         f"Ignore duplicates, certificates, fellowships, or non-degree offerings.\n"
-        f"If a field is unknown, use an empty string, empty list, or empty object.\n\n"
+        f"If no programs meet all criteria, return an empty JSON array.\n\n"
         f"Search Results: {search_results}\n\n"
         f"JSON Format: [{{'university': {{'name': str, 'country': str}}, 'program': {{'title': str, 'level': 'BSc'|'MSc'|'PhD', 'requirements': {{'admission_requirements': list, 'application_procedure': str, 'deadline': str}}}}}}]"
     )

@@ -20,11 +20,10 @@ class Program(BaseModel):
     level: Literal['BSc', 'MSc', 'PhD']
     requirements: Requirements  
 
-
 class Journey(BaseModel):
     id: Optional[int] = None
     university: University
     program: Program
-
+    completed_steps: Optional[List[int]] = []
 
 __all__ = ["Requirements", "University", "Program", "Journey", "AdmissionPipelineStep"]

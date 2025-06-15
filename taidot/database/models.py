@@ -19,6 +19,7 @@ class Journey(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     university = Column(JSON, nullable=False)
     program = Column(JSON, nullable=False)
+    completed_steps = Column(JSON, default=list)  # Store completed step indices
     user = relationship('User', back_populates='journeys')
 
 # SQLite for dev, can be changed to PostgreSQL/MySQL

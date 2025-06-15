@@ -23,7 +23,8 @@ def get_user_journeys(username: str, db: Session = Depends(get_db)):
         JourneySchema(
             id=j.id,
             university=j.university,
-            program=j.program
+            program=j.program,
+            completed_steps=j.completed_steps or []
         ) for j in db_user.journeys
     ]
 
@@ -32,19 +33,49 @@ def get_user_journey(username: str, db: Session = Depends(get_db)):
     db_user = db.query(DBUser).filter(DBUser.username == username).first()
     if not db_user or not db_user.journeys:
         raise HTTPException(status_code=404, detail="User or journey not found")
-    return db_user.journeys[0]
+    j = db_user.journeys[0]
+    return JourneySchema(
+        id=j.id,
+        university=j.university,
+        program=j.program,
+        completed_steps=j.completed_steps or []
+    )
 
 @router.post("/user/{username}/journeys", response_model=JourneySchema)
 def add_journey_for_user(username: str, journey: JourneySchema, db: Session = Depends(get_db)):
     db_user = db.query(DBUser).filter(DBUser.username == username).first()
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
-    db_journey = DBJourney(user_id=db_user.id, university=journey.university.dict(), program=journey.program.dict())
+    db_journey = DBJourney(
+        user_id=db_user.id,
+        university=journey.university.dict(),
+        program=journey.program.dict(),
+        completed_steps=journey.completed_steps or []
+    )
     db.add(db_journey)
     db.commit()
     db.refresh(db_journey)
     return JourneySchema(
         id=db_journey.id,
         university=db_journey.university,
-        program=db_journey.program
+        program=db_journey.program,
+        completed_steps=db_journey.completed_steps or []
+    )
+
+@router.patch("/user/{username}/journeys/{journey_id}/completed_steps", response_model=JourneySchema)
+def update_completed_steps(username: str, journey_id: int, completed_steps: List[int], db: Session = Depends(get_db)):
+    db_user = db.query(DBUser).filter(DBUser.username == username).first()
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found")
+    db_journey = db.query(DBJourney).filter(DBJourney.id == journey_id, DBJourney.user_id == db_user.id).first()
+    if not db_journey:
+        raise HTTPException(status_code=404, detail="Journey not found")
+    db_journey.completed_steps = completed_steps
+    db.commit()
+    db.refresh(db_journey)
+    return JourneySchema(
+        id=db_journey.id,
+        university=db_journey.university,
+        program=db_journey.program,
+        completed_steps=db_journey.completed_steps or []
     )

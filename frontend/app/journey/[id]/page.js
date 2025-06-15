@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import Navbar from "../../components/Navbar";
+import RoadmapStepper from "../../components/RoadmapStepper";
 
 export default function JourneyDetail() {
   const router = useRouter();
@@ -65,15 +66,12 @@ export default function JourneyDetail() {
           </div>
           <div>
             <b>Admission Requirements Roadmap:</b>
-            <ol className="list-decimal ml-6 mt-2">
-              {Array.isArray(requirements.admission_requirements) && requirements.admission_requirements.length > 0 ? (
-                requirements.admission_requirements.map((req, idx) => (
-                  <li key={idx} className="mb-1">{req}</li>
-                ))
-              ) : (
-                <li>-</li>
-              )}
-            </ol>
+            <RoadmapStepper
+              steps={requirements.admission_requirements || []}
+              initialCompleted={journey.completed_steps || []}
+              journeyId={journey.id}
+              username={username}
+            />
           </div>
         </div>
       </div>
